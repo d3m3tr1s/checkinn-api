@@ -1,0 +1,22 @@
+defaults: &defaults  
+    host: <%= ENV['MONGOID_HOST'] %>
+    port: <%= ENV['MONGOID_PORT'] %>
+    username: <%= ENV['MONGOID_USER'] %>
+    password: <%= ENV['MONGOID_PASS'] %>
+    database: <%= ENV['MONGOID_DATABASE'] %>
+    autocreate_indexes: true
+
+
+development:  
+  host: localhost
+  database: checkinn_development
+  autocreate_indexes: true
+
+
+test:  
+  host: localhost
+  database: checkinn_test
+  autocreate_indexes: true
+
+production:  
+    <<: *defaults
