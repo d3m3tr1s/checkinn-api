@@ -55,8 +55,34 @@ class CheckinnApi < Sinatra::Base
 		allocation.to_csv unless allocation.nil?
 	end		
 
+	post '/hotel/:id/booking/format?/?:format?' do
+		request.body.rewind
+		case params[:format]
+		when 'csv'
+			data = CSV.parse request.body.read
+		else
+			data = JSON.parse request.body.read	
+		end
+		booking = Booking.new(hotelid: params[:hotelid]) do |bk|
+			bk.no      = data[0] unless data[0].nil?
+			bk.bkg_sno = data[1] unless data[1].nil?
+			bk.rsd_sno = data[2] unless data[2].nil?
+			bk.atnd_by = data[3] unless data[3].nil?
+			bk.bkd_by  = data[4] unless data[4].nil?
+			bk.roomno  = data[5] unless data[5].nil?
+		end					
+		if booking.save
+			eval "booking.to_#{params[:format]}" 
+		else	
+			eval "error 400, e.message.to_#{params[:format]}"
+		end	
+	end	
+
+	get 'hotel/:id/booking/from/:date/format?/?:format' do
+		
+	end	
+
 	not_found do
   		'Invalid Query'
 	end
-
 end	

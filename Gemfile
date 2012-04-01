@@ -5,9 +5,19 @@ gem 'sinatra-rabbit'
 gem 'haml' 
 gem 'mongoid'
 gem 'fastercsv'
-
+gem 'rake'
 
 group :development, :test do 
   gem 'sinatra-reloader'
 end  
+
+group :test do
+  gem "cucumber-sinatra"
+  gem "cucumber"
+  gem "capybara"
+  gem "rspec"
+  gem "spec"
+  gem 'ZenTest'  
+end
+
 
