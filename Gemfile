@@ -9,15 +9,13 @@ gem 'rake'
 
 group :development, :test do 
   gem 'sinatra-reloader'
-end  
-
-group :test do
   gem "cucumber-sinatra"
   gem "cucumber"
   gem "capybara"
   gem "rspec"
   gem "spec"
-  gem 'ZenTest'  
-end
+  gem 'ZenTest'    
+end  
+
 
 
