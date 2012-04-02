@@ -15,9 +15,9 @@ class CheckinnApi < Sinatra::Base
 
 	#set :enviroment, :development
 
-    configure :development do
-        register Sinatra::Reloader
-    end	
+    #configure :development do
+    #    register Sinatra::Reloader
+    #end	
 
 	get '/' do
 		haml :index		
