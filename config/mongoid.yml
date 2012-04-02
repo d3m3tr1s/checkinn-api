@@ -1,9 +1,9 @@
 defaults: &defaults  
-    host: <%= ENV['MONGOID_HOST'] %>
-    port: <%= ENV['MONGOID_PORT'] %>
-    username: <%= ENV['MONGOID_USER'] %>
-    password: <%= ENV['MONGOID_PASS'] %>
-    database: <%= ENV['MONGOID_DATABASE'] %>
+    host: <%= ENV['MONGOHQ_URL'] %>
+    port: <%= ENV['MONGOHQ_PORT'] %>
+    username: <%= ENV['MONGOHQ_USER'] %>
+    password: <%= ENV['MONGOHQ_PASS'] %>
+    database: <%= ENV['MONGOHQ_DATABASE'] %>
     autocreate_indexes: true
 
 
