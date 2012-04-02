@@ -1,6 +1,9 @@
 require File.join(File.dirname(__FILE__), '..', 'init.rb')
 
+require 'rubygems'
+require 'bundler'
 require 'sinatra'
+require 'rspec'
 require 'rack/test'
 
 # setup test environment

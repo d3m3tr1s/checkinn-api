@@ -63,6 +63,8 @@ class Booking
 	field :co_code, type: String
 	field :status, type: String
 
+
+
 	index(
 		[
 			[ :hotelid, Mongo::ASCENDING],			
@@ -75,7 +77,7 @@ class Booking
 
 	def to_csv
 		[
-			hotelid, no
+			hotelid, no, bkg_sno, rsd_sno 
 		].to_csv
 	end	
 end	

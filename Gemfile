@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-rabbit'
 gem 'haml' 
 gem 'mongoid'
+gem 'mongoid_auto_inc'
 gem 'fastercsv'
 gem 'rake'
 
@@ -13,7 +14,8 @@ group :development, :test do
   gem "cucumber"
   gem "capybara"
   gem "rspec"
-  #gem "spec"
+  gem 'autotest'
+  gem 'autotest-inotify'
   gem 'ZenTest'    
 end  
 

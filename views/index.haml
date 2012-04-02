@@ -1,2 +1,26 @@
-%h1 Checkinn API server!!!!
-lala
+%h1 Checkinn Data Exchange Server API
+%p 
+	%b USAGE
+	%dl
+		%dt GET /hotel/:id/room/:roomno/status/on/:date
+		%dd 
+			for Hotel with ID = :id check status of Room with number = :roomno on date = :date. 
+			%br 
+			Returns 'free' if room is available or 'busy' if room is not available
+
+		%dt GET /hotel/:id/room/:roomno/allocation/on/:date
+		%dd 
+			for Hotel with ID = :id get allocation info of Room with number = :roomno on date = :date. 
+			%br 
+			Returns CSV formatted RoomAllocation data if room is busy or empty string if free
+		%dt POST /hotel/:id/booking/csv 
+		%dd
+			For Hotel with ID = :id
+			Receives CSV (if specified) or JSON (by default) formatted data and stores it in Booking table
+			%br	
+			Returns error if failed, or stored data in same format as provided
+		%dt GET /hotel/:id/bookings/from/:date/csv
+		%dd
+			for Hotel with ID = :id	gets Booking record starting from Date = :date
+			Returns set of Booking record in CSV (if specified) or JSON (by default)
+
