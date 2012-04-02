@@ -13,7 +13,7 @@ group :development, :test do
   gem "cucumber"
   gem "capybara"
   gem "rspec"
-  gem "spec"
+  #gem "spec"
   gem 'ZenTest'    
 end  
 
