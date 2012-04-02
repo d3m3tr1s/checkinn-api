@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra/base'
 require 'sinatra/rabbit'
-require 'sinatra/reloader'
 require 'mongoid'
 require 'csv'
 require 'date'
@@ -15,9 +14,10 @@ class CheckinnApi < Sinatra::Base
 
 	#set :enviroment, :development
 
-    #configure :development do
-    #    register Sinatra::Reloader
-    #end	
+    configure :development do
+    	require 'sinatra/reloader'
+        register Sinatra::Reloader
+    end	
 
 	get '/' do
 		haml :index		
