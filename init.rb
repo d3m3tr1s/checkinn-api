@@ -13,7 +13,7 @@ class CheckinnApi < Sinatra::Base
 	
 	include Sinatra::Rabbit
 
-	set :enviroment, :development
+	#set :enviroment, :development
 
     configure :development do
         register Sinatra::Reloader
@@ -55,31 +55,39 @@ class CheckinnApi < Sinatra::Base
 		allocation.to_csv unless allocation.nil?
 	end		
 
-	post '/hotel/:id/booking/format?/?:format?' do
+	post '/hotel/:id/booking/?:format?' do
 		request.body.rewind
 		case params[:format]
 		when 'csv'
 			data = CSV.parse request.body.read
+			data = data[0]
 		else
-			data = JSON.parse request.body.read	
+			data = JSON.parse request.body.read
 		end
-		booking = Booking.new(hotelid: params[:hotelid]) do |bk|
+		booking = Booking.new(hotelid: params[:id]) do |bk|
 			bk.no      = data[0] unless data[0].nil?
 			bk.bkg_sno = data[1] unless data[1].nil?
 			bk.rsd_sno = data[2] unless data[2].nil?
 			bk.atnd_by = data[3] unless data[3].nil?
 			bk.bkd_by  = data[4] unless data[4].nil?
 			bk.roomno  = data[5] unless data[5].nil?
+			bk.date  = data[6] unless data[6].nil?
+			bk.time  = data[7] unless data[7].nil?
 		end					
+		format = params[:format] || 'json'
 		if booking.save
-			eval "booking.to_#{params[:format]}" 
+			eval "booking.to_#{format}" 
 		else	
 			eval "error 400, e.message.to_#{params[:format]}"
 		end	
 	end	
 
-	get 'hotel/:id/booking/from/:date/format?/?:format' do
-		
+	get '/hotel/:id/bookings/from/:date/?:format?' do
+		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
+		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
+		bookings = Booking.all(conditions: {:date.gte => params[:date], hotelid: params[:id]})		
+		format = params[:format] || 'json'
+		eval "bookings.to_#{format}"
 	end	
 
 	not_found do

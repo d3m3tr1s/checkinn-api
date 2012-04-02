@@ -51,7 +51,7 @@ class Booking
 	field :pin, type: String
 	field :cont_no, type: String
 	field :email, type: String
-	field :date, type: String
+	field :date, type: Date
 	field :time, type: String
 	field :in_date, type: String
 	field :in_time, type: String

@@ -285,14 +285,32 @@ a {
 <div id="div_group_1" class="example_group passed">
   <dl style="margin-left: 0px;">
   <dt id="example_group_1" class="passed">Checkinn API</dt>
-    <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should respond to GET</span><span class='duration'>1.88411s</span></dd>
+    <script type="text/javascript">moveProgressBar('33.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should respond to GET</span><span class='duration'>1.39108s</span></dd>
+    <script type="text/javascript">moveProgressBar('66.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create booking record from POST data in CSV format</span><span class='duration'>1.07706s</span></dd>
+    <script type="text/javascript">makeRed('rspec-header');</script>
+    <script type="text/javascript">makeRed('div_group_1');</script>
+    <script type="text/javascript">makeRed('example_group_1');</script>
     <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should create booking record from POST data in CSV format</span><span class='duration'>1.53909s</span></dd>
+    <dd class="example failed">
+      <span class="failed_spec_name">should return list of bookings stating from date</span>
+      <span class="duration">0.02200s</span>
+      <div class="failure" id="failure_1">
+        <div class="message"><pre>expected &quot;\n&quot; to match /1,WEB000002/</pre></div>
+        <div class="backtrace"><pre>./spec/init_spec.rb:33:in `block (2 levels) in <top (required)>'</pre></div>
+    <pre class="ruby"><code><span class="linenum">31</span>    get '/hotel/1/bookings/from/2012-04-01/csv'
+<span class="linenum">32</span>    last_response.should be_ok
+<span class="offending"><span class="linenum">33</span>    last_response.body.should match(/1,WEB000002/)</span>
+<span class="linenum">34</span>  end
+<span class="linenum">35</span>
+<span class="linenum">36</span><span class="comment"># gem install syntax to get syntax highlighting</span></code></pre>
+      </div>
+    </dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>3.63021 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "2 examples, 0 failures";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>2.83416 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "3 examples, 1 failure";</script>
 </div>
 </div>
 </body>
