@@ -1,55 +1,3 @@
-2012-04-02T09:01:59+00:00 heroku[api]: Add-on update shared-database
-2012-04-02T09:01:59+00:00 heroku[api]: Release v2 created by don.iliy@gmail.com
-2012-04-02T02:03:13-07:00 heroku[slugc]: Slug compilation started
-2012-04-02T02:03:55-07:00 heroku[slugc]: Slug compilation failed: failed to install gems via Bundler
-2012-04-02T02:08:39-07:00 heroku[slugc]: Slug compilation started
-2012-04-02T02:09:21-07:00 heroku[slugc]: Slug compilation failed: failed to install gems via Bundler
-2012-04-02T02:13:42-07:00 heroku[slugc]: Slug compilation started
-2012-04-02T09:14:48+00:00 heroku[api]: Release v3 created by don.iliy@gmail.com
-2012-04-02T09:14:48+00:00 heroku[api]: Deploy 49998ce by don.iliy@gmail.com
-2012-04-02T09:14:48+00:00 heroku[web.1]: State changed from created to starting
-2012-04-02T02:14:49-07:00 heroku[slugc]: Slug compilation finished
-2012-04-02T09:14:52+00:00 heroku[web.1]: Starting process with command `thin -p 57444 -e production -R /home/heroku_rack/heroku.ru start`
-2012-04-02T09:14:53+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
-2012-04-02T09:14:53+00:00 app[web.1]: >> Listening on 0.0.0.0:57444, CTRL+C to stop
-2012-04-02T09:14:53+00:00 app[web.1]: >> Maximum connections set to 1024
-2012-04-02T09:14:54+00:00 heroku[web.1]: State changed from starting to up
-2012-04-02T09:15:59+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:15:59+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T09:15:59+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:15:59 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
-2012-04-02T09:16:01+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:16:01+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:16:01 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
-2012-04-02T09:16:01+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T02:22:56-07:00 heroku[slugc]: Slug compilation started
-2012-04-02T09:23:56+00:00 heroku[api]: Release v4 created by don.iliy@gmail.com
-2012-04-02T09:23:56+00:00 heroku[api]: Deploy 5038651 by don.iliy@gmail.com
-2012-04-02T09:23:56+00:00 heroku[web.1]: State changed from up to bouncing
-2012-04-02T09:23:56+00:00 heroku[web.1]: State changed from bouncing to created
-2012-04-02T09:23:56+00:00 heroku[web.1]: State changed from created to starting
-2012-04-02T02:23:57-07:00 heroku[slugc]: Slug compilation finished
-2012-04-02T09:23:58+00:00 heroku[web.1]: Starting process with command `thin -p 36929 -e production -R /home/heroku_rack/heroku.ru start`
-2012-04-02T09:23:59+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
-2012-04-02T09:23:59+00:00 app[web.1]: >> Maximum connections set to 1024
-2012-04-02T09:23:59+00:00 app[web.1]: >> Listening on 0.0.0.0:36929, CTRL+C to stop
-2012-04-02T09:23:59+00:00 app[web.1]: >> Stopping ...
-2012-04-02T09:23:59+00:00 heroku[web.1]: Stopping process with SIGTERM
-2012-04-02T09:23:59+00:00 heroku[web.1]: State changed from starting to up
-2012-04-02T09:24:00+00:00 heroku[web.1]: Process exited with status 0
-2012-04-02T09:24:01+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:24:01+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T09:24:01+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:24:01 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
-2012-04-02T09:24:01+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T09:24:01+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:24:01+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:24:01 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
-2012-04-02T09:24:02+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:24:02+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:24:02 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
-2012-04-02T09:24:02+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T09:24:02+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T09:24:02+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:24:02+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:24:02 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
-2012-04-02T09:24:15+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
-2012-04-02T09:24:15+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
-2012-04-02T09:24:15+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:24:15 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
 2012-04-02T09:24:15+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
 2012-04-02T09:24:15+00:00 app[web.1]: !! Unexpected error while processing request: no such file to load -- sinatra/reloader
 2012-04-02T09:24:15+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:24:15 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
@@ -84,3 +32,69 @@
 2012-04-02T09:27:38+00:00 app[web.1]: !! Unexpected error while processing request: Failed to connect to a master node at localhost:27017
 2012-04-02T09:27:38+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
 2012-04-02T09:27:38+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:27:38 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
+2012-04-02T09:38:40+00:00 heroku[api]: Add-on add mongohq:free by don.iliy@gmail.com
+2012-04-02T09:38:40+00:00 heroku[api]: Release v6 created by don.iliy@gmail.com
+2012-04-02T09:38:41+00:00 heroku[web.1]: State changed from up to bouncing
+2012-04-02T09:38:41+00:00 heroku[web.1]: State changed from bouncing to created
+2012-04-02T09:38:41+00:00 heroku[web.1]: State changed from created to starting
+2012-04-02T09:38:43+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-04-02T09:38:43+00:00 app[web.1]: >> Stopping ...
+2012-04-02T09:38:44+00:00 heroku[web.1]: Starting process with command `thin -p 5343 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-02T09:38:44+00:00 heroku[web.1]: Process exited with status 0
+2012-04-02T09:38:45+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-02T09:38:45+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-02T09:38:45+00:00 app[web.1]: >> Listening on 0.0.0.0:5343, CTRL+C to stop
+2012-04-02T09:38:46+00:00 heroku[web.1]: State changed from starting to up
+2012-04-02T09:38:56+00:00 app[web.1]: 
+2012-04-02T09:38:56+00:00 app[web.1]: **Notice: C extension not loaded. This is required for optimum MongoDB Ruby driver performance.
+2012-04-02T09:38:56+00:00 app[web.1]:   You can install the extension as follows:
+2012-04-02T09:38:56+00:00 app[web.1]: 
+2012-04-02T09:38:56+00:00 app[web.1]:   gem install bson_ext
+2012-04-02T09:38:56+00:00 app[web.1]:   If you continue to receive this message after installing, make sure that the
+2012-04-02T09:38:56+00:00 app[web.1]: 
+2012-04-02T09:38:56+00:00 app[web.1]:   bson_ext gem is in your load path and that the bson_ext and mongo gems are of the same version.
+2012-04-02T09:38:57+00:00 app[web.1]: MONGODB [DEBUG] Logging level is currently :debug which could negatively impact client-side performance. You should set your logging level no lower than :info in production.
+2012-04-02T09:39:00+00:00 app[web.1]: !! Unexpected error while processing request: Failed to connect to a master node at localhost:27017
+2012-04-02T09:39:00+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
+2012-04-02T09:39:00+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:39:00 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
+2012-04-02T09:39:00+00:00 app[web.1]: MONGODB [DEBUG] Logging level is currently :debug which could negatively impact client-side performance. You should set your logging level no lower than :info in production.
+2012-04-02T09:39:03+00:00 app[web.1]: !! Unexpected error while processing request: Failed to connect to a master node at localhost:27017
+2012-04-02T09:39:03+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
+2012-04-02T09:39:03+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:39:03 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
+2012-04-02T02:40:00-07:00 heroku[slugc]: Slug compilation started
+2012-04-02T09:41:02+00:00 heroku[api]: Deploy 07c3be7 by don.iliy@gmail.com
+2012-04-02T09:41:02+00:00 heroku[api]: Release v7 created by don.iliy@gmail.com
+2012-04-02T09:41:03+00:00 heroku[web.1]: State changed from bouncing to created
+2012-04-02T09:41:03+00:00 heroku[web.1]: State changed from up to bouncing
+2012-04-02T09:41:03+00:00 heroku[web.1]: State changed from created to starting
+2012-04-02T02:41:03-07:00 heroku[slugc]: Slug compilation finished
+2012-04-02T09:41:05+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-04-02T09:41:05+00:00 app[web.1]: >> Stopping ...
+2012-04-02T09:41:06+00:00 heroku[web.1]: Process exited with status 0
+2012-04-02T09:41:06+00:00 heroku[web.1]: Starting process with command `thin -p 23513 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-02T09:41:06+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-02T09:41:06+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-02T09:41:06+00:00 app[web.1]: >> Listening on 0.0.0.0:23513, CTRL+C to stop
+2012-04-02T09:41:07+00:00 heroku[web.1]: State changed from starting to up
+2012-04-02T09:44:18+00:00 app[web.1]: 
+2012-04-02T09:44:18+00:00 app[web.1]: **Notice: C extension not loaded. This is required for optimum MongoDB Ruby driver performance.
+2012-04-02T09:44:18+00:00 app[web.1]:   You can install the extension as follows:
+2012-04-02T09:44:18+00:00 app[web.1]: 
+2012-04-02T09:44:18+00:00 app[web.1]:   gem install bson_ext
+2012-04-02T09:44:18+00:00 app[web.1]:   If you continue to receive this message after installing, make sure that the
+2012-04-02T09:44:18+00:00 app[web.1]: 
+2012-04-02T09:44:18+00:00 app[web.1]:   bson_ext gem is in your load path and that the bson_ext and mongo gems are of the same version.
+2012-04-02T09:44:19+00:00 app[web.1]: MONGODB [DEBUG] Logging level is currently :debug which could negatively impact client-side performance. You should set your logging level no lower than :info in production.
+2012-04-02T09:44:19+00:00 app[web.1]: MONGODB (67ms) admin['$cmd'].find({:ismaster=>1}).limit(-1)
+2012-04-02T09:44:19+00:00 app[web.1]: MONGODB (0ms) app3617583['$cmd'].find({:getnonce=>1}).limit(-1)
+2012-04-02T09:44:19+00:00 app[web.1]: MONGODB (3ms) app3617583['$cmd'].find({"authenticate"=>1, "user"=>"mongodb", "nonce"=>"c556de892b17573b", "key"=>"15c8f2d03bd559d9bf61c8bbe636cd2e"}).limit(-1)
+2012-04-02T09:44:19+00:00 app[web.1]: !! Unexpected error while processing request: Failed to authenticate user 'mongodb' on db 'app3617583'
+2012-04-02T09:44:19+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:44:19 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
+2012-04-02T09:44:19+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
+2012-04-02T09:44:20+00:00 app[web.1]: MONGODB [DEBUG] Logging level is currently :debug which could negatively impact client-side performance. You should set your logging level no lower than :info in production.
+2012-04-02T09:44:20+00:00 app[web.1]: MONGODB (0ms) admin['$cmd'].find({:ismaster=>1}).limit(-1)
+2012-04-02T09:44:20+00:00 app[web.1]: MONGODB (1ms) app3617583['$cmd'].find({"authenticate"=>1, "user"=>"mongodb", "nonce"=>"800e682749823ae7", "key"=>"a2c0174b61fcea471a78b9d2f252c393"}).limit(-1)
+2012-04-02T09:44:20+00:00 app[web.1]: MONGODB (31ms) app3617583['$cmd'].find({:getnonce=>1}).limit(-1)
+2012-04-02T09:44:20+00:00 app[web.1]: !! Unexpected error while processing request: Failed to authenticate user 'mongodb' on db 'app3617583'
+2012-04-02T09:44:20+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
+2012-04-02T09:44:20+00:00 heroku[nginx]: 92.113.87.54 - - [02/Apr/2012:09:44:20 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11" checkinn.heroku.com
