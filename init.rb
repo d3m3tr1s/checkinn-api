@@ -4,6 +4,7 @@ require 'sinatra/rabbit'
 require 'mongoid'
 require 'csv'
 require 'date'
+require 'logger'
 
 require File.expand_path(File.dirname(__FILE__) + '/models/db_mongo')
 
@@ -23,27 +24,15 @@ class CheckinnApi < Sinatra::Base
 	
 	include Sinatra::Rabbit
 
-    configure :development do
+    configure :development, :test do
     	require 'sinatra/reloader'
         register Sinatra::Reloader
+        enable :logging
     end	
 
 	get '/' do
 		haml :index		
 	end
-
-	get '/generate' do
-		allocation = RoomAllocation.find_or_create_by(
-			hotelid: 1, 
-			roomno: 1, 
-			date: Date.today.to_s,
-			type: "Bkd",
-			resno: 'WEB0000001',
-			ressno: 2,
-			rsdsno: 2
-		)
-		allocation.to_csv
-	end	
 
 	get '/hotel/:id/room/:roomno/status/on/:date' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
@@ -84,8 +73,13 @@ class CheckinnApi < Sinatra::Base
 				bk.roomno  = row[5] unless row[5].nil?
 				bk.date  = row[6] unless row[6].nil?
 				bk.time  = row[7] unless row[7].nil?
+				bk.in_date  = row[8] unless row[8].nil?
+				bk.in_time  = row[9] unless row[9].nil?
+				bk.out_date  = row[10] unless row[10].nil?
+				bk.out_time  = row[11] unless row[11].nil?
 			end				
 			if booking.save
+				booking.generate_allocations
 				eval "#{params[:format]} = #{params[:format]} + booking.to_#{params[:format]}" 
 			else	
 				err_msg.push e.message

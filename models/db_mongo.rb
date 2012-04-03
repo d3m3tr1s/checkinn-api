@@ -1,3 +1,13 @@
+class Access
+	include Mongoid::Document
+	field :key, type: String
+	field :secret, type: String
+	field :hotelid, type: String
+	field :root, type: Boolean
+
+	index :key, unique: true
+end	
+
 class RoomAllocation
 	include Mongoid::Document
 	field :hotelid, type: String
@@ -30,7 +40,7 @@ class RoomAllocation
 		[
 			hotelid, roomno, date, type, resno, ressno, 
 			rsdsno, name, pkgcode, tariff, intime,
-			outtime,status,shortname
+			outtime, status, shortname, fxd
 		].to_csv
 	end
 end
@@ -77,7 +87,30 @@ class Booking
 
 	def to_csv
 		[
-			hotelid, no, bkg_sno, rsd_sno 
+			hotelid, no, bkg_sno, rsd_sno,
+			atnd_by, bkd_by, roomno, enq_no,
+			add, city, pin, cont_no, email,
+			date, time, in_date, in_time, 
+			out_date, out_time, gst_code,
+			cu_name, ag_code, co_code, status 
 		].to_csv
+	end	
+
+	def generate_allocations
+		indt = Date.strptime(in_date, "%Y-%m-%d")
+		oudt = Date.strptime(out_date, "%Y-%m-%d")
+		indt.upto oudt do |day|
+			RoomAllocation.create(hotelid: hotelid) do |ra|
+				ra.roomno = roomno
+				ra.date = day
+				ra.type = "Bkd"
+				ra.resno = no
+				ra.ressno = bkg_sno
+				ra.resno = rsd_sno
+				ra.name = cu_name
+				ra.intime = in_time if in_date == day
+				ra.outtime = out_time if out_date == day
+			end	
+		end
 	end	
 end	
