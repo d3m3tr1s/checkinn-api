@@ -37,7 +37,7 @@ describe "Checkinn API" do
   it "should return list of bookings stating from date" do
     date = "2012-04-01"
     time = "17:40:00"
-    get '/hotel/1/bookings/from/2012-04-01/csv'
+    get '/hotel/1/booking/from/2012-04-01/csv'
     last_response.should be_ok
     last_response.body.should match(/1,WEB000002/)
   end

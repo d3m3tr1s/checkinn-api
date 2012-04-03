@@ -94,7 +94,7 @@ class CheckinnApi < Sinatra::Base
 		end	
 	end	
 
-	get '/hotel/:id/bookings/from/:date/?:format?' do
+	get '/hotel/:id/booking/from/:date/?:format?' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
 		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
 		bookings = Booking.all_of(:date.gte => params[:date], hotelid: params[:id])
