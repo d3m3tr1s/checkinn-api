@@ -45,12 +45,19 @@ class CheckinnApi < Sinatra::Base
 		end
 	end	
 
-	get '/hotel/:id/room/:roomno/allocation/on/:date' do
+	get '/hotel/:id/room/?:roomno?/allocation/on/:date' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
-		halt 400, 'Invalid Room No' unless params[:roomno].to_i > 0
+		halt 400, 'Invalid Room No' unless params[:roomno].nil? || params[:roomno].to_i > 0
 		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
-		allocation = RoomAllocation.first(conditions: {hotelid: params[:id], roomno: params[:roomno], date: params[:date]})
-		allocation.to_csv unless allocation.nil?
+		if params[:roomno]
+			allocation = RoomAllocation.first(conditions: {hotelid: params[:id], roomno: params[:roomno], date: params[:date]})
+			allocation.to_csv unless allocation.nil?
+		else
+			csv = ''
+			allocations = RoomAllocation.all_of(date: params[:date], hotelid: params[:id])
+			allocations.each {|a|	csv= csv << a.to_csv}	
+			csv
+		end	
 	end		
 
 	post '/hotel/:id/booking/?:format?' do

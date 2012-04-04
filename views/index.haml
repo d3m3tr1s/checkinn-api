@@ -8,11 +8,14 @@
 			%br 
 			Returns 'free' if room is available or 'busy' if room is not available
 
-		%dt GET /hotel/:id/room/:roomno/allocation/on/:date
+		%dt 
+			GET /hotel/:id/room/allocation/on/:date
+			%br
+			GET /hotel/:id/room/:roomno/allocation/on/:date
 		%dd 
-			for Hotel with ID = :id get allocation info of Room with number = :roomno on date = :date. 
+			for Hotel with ID = :id get allocation info of Rooms or Room with number = :roomno (if specified) on date = :date. 
 			%br 
-			Returns CSV formatted RoomAllocation data if room is busy or empty string if free
+			Returns CSV formatted RoomAllocation data if for busy room(s) or empty string if free
 		%dt POST /hotel/:id/booking/csv 
 		%dd
 			For Hotel with ID = :id
