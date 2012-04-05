@@ -34,6 +34,58 @@ class CheckinnApi < Sinatra::Base
 		haml :index		
 	end
 
+	collection :access do
+		description "Colletion of API accesses"
+
+		operation :index do
+	      description "List of All Accesses"
+	      control do
+	      	csv = ''
+	        accesses = Access.all 
+	        accesses.each {|ac|	csv= csv << ac.to_csv}	
+	        csv
+	      end
+	    end
+
+		operation :create do
+			description "Create new API access"
+			param :key,  :string, :required
+			param :secret,  :string, :required
+			param :hotelid,  :string
+			param :root, :boolean
+			control do
+				access = Access.new(key: params[:key], secret: params[:secret]) do |ac|
+					ac.hotelid = params[:hotelid] unless params[:hotelid].nil?
+					ac.root = params[:root] || false
+				end	
+				if access.save
+					access.key
+				else
+					error 400, e.message	
+				end	
+			end	
+		end	
+
+		operation :show do
+			description "Display details of access"
+			param :key,  :string, :required
+			control do
+				access = Access.where(key: params[:key]).find
+				access.to_csv
+			end	
+		end	
+
+		operation :destroy do
+			description "Delete access"
+      		param :key, :string, :required
+      		control do
+        		Access.destroy!(params[:key])
+        		halt [410, "Access deleted"]
+		    end			
+		end	
+	end	
+
+
 	get '/hotel/:id/room/:roomno/status/on/:date' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
 		halt 400, 'Invalid Room No' unless params[:roomno].to_i > 0

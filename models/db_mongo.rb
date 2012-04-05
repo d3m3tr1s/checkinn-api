@@ -6,6 +6,10 @@ class Access
 	field :root, type: Boolean
 
 	index :key, unique: true
+
+	def to_csv
+		[key, secret, hotelid, root].to_csv
+	end	
 end	
 
 class RoomAllocation

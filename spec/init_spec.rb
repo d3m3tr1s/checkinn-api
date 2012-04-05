@@ -42,4 +42,22 @@ describe "Checkinn API" do
     last_response.body.should match(/1,WEB000002/)
   end
 
+  it "should create new access record" do
+    post '/access', params = {:key => '123456789', :secret => 'kp7Ypohjhapkido1980', :hotelid => 1}
+    last_response.should be_ok
+    last_response.body.should == '123456789'
+  end
+
+  it "should show single access record" do
+    get '/access/123456789'
+    last_response.should be_ok
+    last_response.body.should match(/123456789/)
+  end
+
+  it "should should all accesses" do
+    get '/access'
+    last_response.should be_ok
+    last_response.body.should match(/123456789/)    
+  end 
+
 end
