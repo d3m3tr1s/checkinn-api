@@ -285,38 +285,24 @@ a {
 <div id="div_group_1" class="example_group passed">
   <dl style="margin-left: 0px;">
   <dt id="example_group_1" class="passed">Checkinn API</dt>
-    <script type="text/javascript">moveProgressBar('16.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">should respond to GET</span><span class='duration'>1.86111s</span></dd>
-    <script type="text/javascript">moveProgressBar('33.3');</script>
-    <dd class="example passed"><span class="passed_spec_name">should create booking record from POST data in CSV format</span><span class='duration'>0.10300s</span></dd>
-    <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should return list of bookings stating from date</span><span class='duration'>0.01700s</span></dd>
-    <script type="text/javascript">moveProgressBar('66.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">should create new access record</span><span class='duration'>0.01800s</span></dd>
-    <script type="text/javascript">makeRed('rspec-header');</script>
-    <script type="text/javascript">makeRed('div_group_1');</script>
-    <script type="text/javascript">makeRed('example_group_1');</script>
-    <script type="text/javascript">moveProgressBar('83.3');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">should show single access record</span>
-      <span class="duration">0.00500s</span>
-      <div class="failure" id="failure_1">
-        <div class="message"><pre>expected ok? to return true, got false</pre></div>
-        <div class="backtrace"><pre>./spec/init_spec.rb:53:in `block (2 levels) in <top (required)>'</pre></div>
-    <pre class="ruby"><code><span class="linenum">51</span>  it "should show single access record" do
-<span class="linenum">52</span>    get '/access/123456789'
-<span class="offending"><span class="linenum">53</span>    last_response.should be_ok</span>
-<span class="linenum">54</span>    last_response.body.should match(/123456789/)
-<span class="linenum">55</span>  end
-<span class="linenum">56</span><span class="comment"># gem install syntax to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+    <script type="text/javascript">moveProgressBar('14.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should respond to GET</span><span class='duration'>2.34013s</span></dd>
+    <script type="text/javascript">moveProgressBar('28.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create list of Room Blocked from POST data in CSV format</span><span class='duration'>1.45308s</span></dd>
+    <script type="text/javascript">moveProgressBar('42.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create booking record from POST data in CSV format</span><span class='duration'>0.18001s</span></dd>
+    <script type="text/javascript">moveProgressBar('57.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return list of bookings starting from date</span><span class='duration'>0.07300s</span></dd>
+    <script type="text/javascript">moveProgressBar('71.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create new access record</span><span class='duration'>0.02600s</span></dd>
+    <script type="text/javascript">moveProgressBar('85.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show single access record</span><span class='duration'>0.02300s</span></dd>
     <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should should all accesses</span><span class='duration'>0.01300s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">should show all accesses</span><span class='duration'>0.03400s</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>2.74716 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "6 examples, 1 failure";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>4.70827 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "7 examples, 0 failures";</script>
 </div>
 </div>
 </body>

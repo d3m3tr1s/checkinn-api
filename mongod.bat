@@ -1,0 +1,1 @@
+d:\wamp\bin\mongo\bin\mongod.exe -dbpath d:\wamp\bin\mongo\data\db

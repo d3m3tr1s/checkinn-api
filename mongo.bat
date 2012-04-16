@@ -1,0 +1,1 @@
+d:\wamp\bin\mongo\bin\mongo.exe

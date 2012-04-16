@@ -1,7 +1,10 @@
 defaults: &defaults  
-    host: <%= ENV['MONGOHQ_URL'] %>
-    database: <%= ENV['MONGOHQ_DATABASE'] %>
-    autocreate_indexes: true
+  host: <%= ENV['MONGOHQ_HOST'] %>
+  port: <%= ENV['MONGOHQ_PORT'] %>
+  username: <%= ENV['MONGOHQ_USERNAME'] %>
+  password: <%= ENV['MONGOHQ_PASSWORD'] %>
+  database: <%= ENV['MONGOHQ_DATABASE'] %>
+  autocreate_indexes: true
 
 
 development:  

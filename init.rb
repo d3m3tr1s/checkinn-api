@@ -8,16 +8,16 @@ require 'logger'
 
 require File.expand_path(File.dirname(__FILE__) + '/models/db_mongo')
 
-#Mongoid.load!("config/mongoid.yml")
-Mongoid.configure do |config|
-	if ENV['MONGOHQ_URL']
-	  conn = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
-	  uri = URI.parse(ENV['MONGOHQ_URL'])
-	  config.master = conn.db(uri.path.gsub(/^\//, ''))
-	else
-	  config.master = Mongo::Connection.from_uri("mongodb://localhost:27017").db('checkinn_development')
-	end
- end
+Mongoid.load!("config/mongoid.yml")
+#Mongoid.configure do |config|
+#	if ENV['MONGOHQ_URL']
+#	  conn = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
+#	  uri = URI.parse(ENV['MONGOHQ_URL'])
+#	  config.master = conn.db(uri.path.gsub(/^\//, ''))
+#	else
+#	  config.master = Mongo::Connection.from_uri("mongodb://localhost:27017").db('checkinn_development')
+#	end
+# end
 
 
 class CheckinnApi < Sinatra::Base
@@ -68,9 +68,9 @@ class CheckinnApi < Sinatra::Base
 
 		operation :show do
 			description "Display details of access"
-			param :key,  :string, :required
+			param :id,  :integer, :required
 			control do
-				access = Access.where(key: params[:key]).find
+				access = Access.first(conditions: {key: params[:id]})
 				access.to_csv
 			end	
 		end	
@@ -86,7 +86,7 @@ class CheckinnApi < Sinatra::Base
 	end	
 
 
-	get '/hotel/:id/room/:roomno/status/on/:date' do
+	get '/hotel/:id/room/:roomno/status/:date' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
 		halt 400, 'Invalid Room No' unless params[:roomno].to_i > 0
 		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
@@ -97,7 +97,7 @@ class CheckinnApi < Sinatra::Base
 		end
 	end	
 
-	get '/hotel/:id/room/?:roomno?/allocation/on/:date' do
+	get '/hotel/:id/room/?:roomno?/allocation/:date' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
 		halt 400, 'Invalid Room No' unless params[:roomno].nil? || params[:roomno].to_i > 0
 		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
@@ -112,62 +112,118 @@ class CheckinnApi < Sinatra::Base
 		end	
 	end		
 
-	post '/hotel/:id/booking/?:format?' do
+	post '/hotel/:id/checkin' do
+		err_msg = []
+		csv = ''
+		request.body.rewind
+		data = CSV.parse request.body.read
+		data.each do |row|
+			checkin = Checkin.new(hotelid: params[:id]) do |ch|
+				ch.lfno = row[0] unless row[0].nil?
+				ch.in_date = row[1] unless row[1].nil?
+				ch.in_time = row[2] unless row[2].nil?
+				ch.out_date = row[3] unless row[3].nil?
+				ch.out_time = row[4] unless row[4].nil?
+				ch.roomno = row[5] unless row[5].nil?
+			end	
+			if checkin.save
+				checkin.generate_allocations
+				csv = csv + checkin.to_csv
+			else
+				err_msg.push e.message
+				break
+			end	
+		end		
+		if err_msg.empty?
+			csv
+		else
+			error 400, err_msg.to_csv
+		end	
+	end	
+
+	post '/hotel/:id/blocked' do
+		err_msg = []
+		csv = ''
+		request.body.rewind
+		data = CSV.parse request.body.read
+		data.each do |row|
+			roomblocked = RoomBlocked.new(hotelid: params[:id]) do |rb|
+				rb.roomno = row[0] unless row[0].nil?
+				rb.date = row[1] unless row[1].nil?
+			end	
+			if roomblocked.save
+				roomblocked.generate_allocations
+				csv = csv + roomblocked.to_csv
+			else	
+				err_msg.push e.message
+				break
+			end				
+		end
+		if err_msg.empty?
+			csv
+		else
+			error 400, err_msg.to_csv
+		end	
+	end	
+
+	post '/hotel/:id/booking/?:local?' do
 		err_msg = []
 		request.body.rewind
-		case params[:format]
-		when 'csv'
-			csv = ''
-			data = CSV.parse request.body.read
-		else
-			data = JSON.parse request.body.read
-		end
+		csv = ''
+		data = CSV.parse request.body.read
 		data.each do |row|
 			booking = Booking.new(hotelid: params[:id]) do |bk|
-				bk.no      = row[0] unless row[0].nil?
-				bk.bkg_sno = row[1] unless row[1].nil?
-				bk.rsd_sno = row[2] unless row[2].nil?
-				bk.atnd_by = row[3] unless row[3].nil?
-				bk.bkd_by  = row[4] unless row[4].nil?
-				bk.roomno  = row[5] unless row[5].nil?
-				bk.date  = row[6] unless row[6].nil?
-				bk.time  = row[7] unless row[7].nil?
-				bk.in_date  = row[8] unless row[8].nil?
-				bk.in_time  = row[9] unless row[9].nil?
-				bk.out_date  = row[10] unless row[10].nil?
-				bk.out_time  = row[11] unless row[11].nil?
+				if params[:local].nil?
+					bk.no      = row[0] unless row[0].nil?
+					bk.bkg_sno = row[1] unless row[1].nil?
+					bk.roomno  = row[2] unless row[2].nil?
+					bk.cu_name  = row[3] unless row[3].nil?
+					bk.cont_no  = row[4] unless row[4].nil?
+					bk.email  = row[5] unless row[5].nil?
+					bk.date  = row[6] unless row[6].nil?
+					bk.time  = row[7] unless row[7].nil?
+					bk.in_date  = row[8] unless row[8].nil?
+					bk.in_time  = row[9] unless row[9].nil?
+					bk.out_date  = row[10] unless row[10].nil?
+					bk.out_time  = row[11] unless row[11].nil?
+					bk.status  = row[12] unless row[12].nil?
+					bk.adult  = row[13] unless row[13].nil?
+					bk.child  = row[14] unless row[14].nil?
+					bk.tariff  = row[15] unless row[15].nil?
+					bk.plan  = row[16] unless row[16].nil?
+					bk.incl_ind  = row[17] unless row[17].nil?
+				else
+					bk.no = row[0] unless row[0].nil?
+					bk.roomno = row[1] unless row[1].nil?
+					bk.in_date = row[2] unless row[2].nil?
+					bk.in_time = row[3] unless row[3].nil?
+					bk.out_date = row[4] unless row[4].nil?
+					bk.out_time = row[5] unless row[5].nil?
+					bk.status = row[6] unless row[6].nil?
+				end	
 			end				
-			if booking.save
+			if params[:local] || booking.save
 				booking.generate_allocations
-				eval "#{params[:format]} = #{params[:format]} + booking.to_#{params[:format]}" 
+				csv = csv + booking.to_csv
 			else	
 				err_msg.push e.message
 				break
 			end				
 		end	
-		format = params[:format] || 'json'
 		if err_msg.empty?
-			eval "#{params[:format]}"	
+			csv	
 		else
-			eval "error 400, err_msg.to_#{params[:format]}"			
+			error 400, err_msg
 		end	
 	end	
 
-	get '/hotel/:id/booking/from/:date/?:format?' do
+	get '/hotel/:id/booking/from/:date' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
 		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
 		bookings = Booking.all_of(:date.gte => params[:date], hotelid: params[:id])
-		case params[:format]
-		when 'csv'	
-			csv = ''
-			bookings.each {|b|	csv= csv << b.to_csv}
-		else
-			json = []
-			bookings.each {|b|	json.push b.to_json :except => :_id }
-			json = json.to_json
-		end	
-		format = params[:format] || 'json'
-		eval "#{format}"
+		csv = ''
+		bookings.each {|b|	csv= csv << b.to_csv}
+		csv
 	end	
 
 	not_found do
