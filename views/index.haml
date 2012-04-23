@@ -51,10 +51,14 @@
 		%dt POST /access, {:key => :string, :secret => :string, :hotelid => :string, :root => :bollean}	
 		%dd
 			Create access record
-			%br :key - public ID 
-			%br :secret - private key 
-			%br :hotelid - optional limited access to single hotel (for single hotel)
-			%br :root - optional flag (true|false) for access with rights to manage other access records
+			%br
+			\:key - public ID 
+			%br
+			\:secret - private key 
+			%br
+			\:hotelid - optional limited access to single hotel (for single hotel)
+			%br
+			\:root - optional flag (true|false) for access with rights to manage other access records
 		%dt GET /access/:key
 		%dd
 			Show single access record data in CSV format		
