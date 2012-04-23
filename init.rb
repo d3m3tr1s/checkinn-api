@@ -22,7 +22,7 @@ Mongoid.configure do |config|
 	end
  end
 
-$LOG = Logger.new('log_file.txt')  
+#$LOG = Logger.new('log_file.txt')  
 
 class CheckinnApi < Sinatra::Base
 	

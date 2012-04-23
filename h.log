@@ -1,0 +1,105 @@
+ !    `log` is not a heroku command.
+ !    Perhaps you meant `logs`.
+ !    See `heroku help` for additional details.
+2012-04-18T11:32:36+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-04-18T11:32:36+00:00 app[web.1]: >> Stopping ...
+2012-04-18T11:32:37+00:00 heroku[web.1]: Process exited with status 0
+2012-04-18T11:32:37+00:00 heroku[web.1]: State changed from up to down
+2012-04-20T20:52:05+00:00 heroku[web.1]: Unidling
+2012-04-20T20:52:05+00:00 heroku[web.1]: State changed from down to created
+2012-04-20T20:52:05+00:00 heroku[web.1]: State changed from created to starting
+2012-04-20T20:52:07+00:00 heroku[web.1]: Starting process with command `thin -p 3606 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-20T20:52:07+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-20T20:52:07+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-20T20:52:07+00:00 app[web.1]: >> Listening on 0.0.0.0:3606, CTRL+C to stop
+2012-04-20T20:52:08+00:00 heroku[web.1]: State changed from starting to up
+2012-04-20T20:52:09+00:00 app[web.1]: 
+2012-04-20T20:52:09+00:00 app[web.1]: **Notice: C extension not loaded. This is required for optimum MongoDB Ruby driver performance.
+2012-04-20T20:52:09+00:00 app[web.1]:   You can install the extension as follows:
+2012-04-20T20:52:09+00:00 app[web.1]:   gem install bson_ext
+2012-04-20T20:52:09+00:00 app[web.1]: 
+2012-04-20T20:52:09+00:00 app[web.1]:   If you continue to receive this message after installing, make sure that the
+2012-04-20T20:52:09+00:00 app[web.1]:   bson_ext gem is in your load path and that the bson_ext and mongo gems are of the same version.
+2012-04-20T20:52:09+00:00 app[web.1]: 
+2012-04-20T20:52:11+00:00 heroku[router]: GET checkinn.heroku.com/ dyno=web.1 queue=0 wait=0ms service=1790ms status=200 bytes=1538
+2012-04-20T20:52:11+00:00 heroku[nginx]: 95.133.100.225 - - [20/Apr/2012:20:52:11 +0000] "GET / HTTP/1.1" 200 599 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19" checkinn.heroku.com
+2012-04-20T21:58:41+00:00 heroku[web.1]: Idling
+2012-04-20T21:58:42+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-04-20T21:58:42+00:00 app[web.1]: >> Stopping ...
+2012-04-20T21:58:43+00:00 heroku[web.1]: Process exited with status 0
+2012-04-20T21:58:43+00:00 heroku[web.1]: State changed from up to down
+2012-04-20T21:58:43+00:00 heroku[web.1]: State changed from down to created
+2012-04-20T21:58:44+00:00 heroku[web.1]: State changed from created to starting
+2012-04-20T21:58:46+00:00 heroku[web.1]: Starting process with command `thin -p 48588 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-20T21:58:48+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-20T21:58:48+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-20T21:58:48+00:00 app[web.1]: >> Listening on 0.0.0.0:48588, CTRL+C to stop
+2012-04-20T21:58:48+00:00 heroku[web.1]: State changed from starting to up
+2012-04-20T23:01:26+00:00 heroku[web.1]: Idling
+2012-04-20T23:01:28+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-04-20T23:01:2
+8+00:00 app[web.1]: >> Stopping ...
+2012-04-20T23:01:29+00:00 heroku[web.1]: Process exited with status 0
+2012-04-20T23:01:29+00:00 heroku[web.1]: State changed from up to down
+2012-04-21T15:20:15+00:00 heroku[web.1]: Unidling
+2012-04-21T15:20:15+00:00 heroku[web.1]: State changed from down to created
+2012-04-21T15:20:15+00:00 heroku[web.1]: State changed from created to starting
+2012-04-21T15:20:17+00:00 heroku[web.1]: Starting process with command `thin -p 33701 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-21T15:20:18+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-21T15:20:18+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-21T15:20:18+00:00 app[web.1]: >> Listening on 0.0.0.0:33701, CTRL+C to stop
+2012-04-21T15:20:19+00:00 heroku[web.1]: State changed from starting to up
+2012-04-21T15:20:20+00:00 app[web.1]: 
+2012-04-21T15:20:20+00:00 app[web.1]: **Notice: C extension not loaded. This is required for optimum MongoDB Ruby driver performance.
+2012-04-21T15:20:20+00:00 app[web.1]:   You can install the extension as follows:
+2012-04-21T15:20:20+00:00 app[web.1]:   gem install bson_ext
+2012-04-21T15:20:20+00:00 app[web.1]: 
+2012-04-21T15:20:20+00:00 app[web.1]: 
+2012-04-21T15:20:20+00:00 app[web.1]:   bson_ext gem is in your load path and that the bson_ext and mongo gems are of the same version.
+2012-04-21T15:20:20+00:00 app[web.1]:   If you continue to receive this message after installing, make sure that the
+2012-04-21T15:20:21+00:00 heroku[router]: GET checkinn.heroku.com/ dyno=web.1 queue=0 wait=0ms service=1640ms status=200 bytes=1538
+2012-04-21T15:20:21+00:00 heroku[nginx]: 95.133.100.225 - - [21/Apr/2012:15:20:21 +0000] "GET / HTTP/1.1" 200 599 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19" checkinn.heroku.com
+2012-04-21T16:24:34+00:00 heroku[web.1]: Idling
+2012-04-21T16:24:36+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-04-21T16:24:36+00:00 app[web.1]: >> Stopping ...
+2012-04-21T16:24:37+00:00 heroku[web.1]: Process exited with status 0
+2012-04-21T16:24:37+00:00 heroku[web.1]: State changed from up to down
+2012-04-21T16:24:37+00:00 heroku[web.1]: State changed from down to created
+2012-04-21T16:24:37+00:00 heroku[web.1]: State changed from created to starting
+2012-04-21T16:24:39+00:00 heroku[web.1]: Starting process with command `thin -p 32561 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-21T16:24:40+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-21T16:24:40+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-21T16:24:40+00:00 app[web.1]: >> Listening on 0.0.0.0:32561, CTRL+C to stop
+2012-04-21T16:24:40+00:00 heroku[web.1]: State changed from starting to up
+2012-04-21T17:29:41+00:00 heroku[web.1]: Idling
+2012-04-21T17:29:43+00:00 heroku[web.1]: Stopping p
+rocess with SIGTERM
+2012-04-21T17:29:43+00:00 app[web.1]: >> Stopping ...
+2012-04-21T17:29:44+00:00 heroku[web.1]: Process exited with status 0
+2012-04-21T17:29:44+00:00 heroku[web.1]: State changed from up to down
+2012-04-23T03:19:43-07:00 heroku[slugc]: Slug compilation started
+2012-04-23T10:20:58+00:00 heroku[api]: Release v16 created by don.iliy@gmail.com
+2012-04-23T10:20:58+00:00 heroku[api]: Deploy 29ac7aa by don.iliy@gmail.com
+2012-04-23T03:20:58-07:00 heroku[slugc]: Slug compilation finished
+2012-04-23T10:36:17+00:00 heroku[web.1]: Unidling
+2012-04-23T10:36:17+00:00 heroku[web.1]: State changed from down to created
+2012-04-23T10:36:17+00:00 heroku[web.1]: State changed from created to starting
+2012-04-23T10:36:21+00:00 heroku[web.1]: Starting process with command `thin -p 58977 -e production -R /home/heroku_rack/heroku.ru start`
+2012-04-23T10:36:22+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-04-23T10:36:22+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-04-23T10:36:22+00:00 app[web.1]: >> Listening on 0.0.0.0:58977, CTRL+C to stop
+2012-04-23T10:36:23+00:00 heroku[web.1]: State changed from starting to up
+2012-04-23T10:36:25+00:00 app[web.1]: 
+2012-04-23T10:36:25+00:00 app[web.1]: **Notice: C extension not loaded. This is required for optimum MongoDB Ruby driver performance.
+2012-04-23T10:36:25+00:00 app[web.1]:   You can install the extension as follows:
+2012-04-23T10:36:25+00:00 app[web.1]:   gem install bson_ext
+2012-04-23T10:36:25+00:00 app[web.1]: 
+2012-04-23T10:36:25+00:00 app[web.1]:   If you continue to receive this message after installing, make sure that the
+2012-04-23T10:36:25+00:00 app[web.1]:   bson_ext gem is in your load path and that the bson_ext and mongo gems are of the same version.
+2012-04-23T10:36:25+00:00 app[web.1]: 
+2012-04-23T10:36:25+00:00 app[web.1]: !! Unexpected error while processing request: Permission denied - log_file.txt
+2012-04-23T10:36:25+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/ dyno=web.1 queue= wait= service= status=503 bytes=
+2012-04-23T10:36:25+00:00 heroku[nginx]: 46.200.89.91 - - [23/Apr/2012:10:36:25 +0000] "GET / HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19" checkinn.heroku.com
+2012-04-23T10:36:27+00:00 app[web.1]: !! Unexpected error while processing request: Permission denied - log_file.txt
+2012-04-23T10:36:27+00:00 heroku[router]: Error H13 (Connection closed without response) -> GET checkinn.heroku.com/favicon.ico dyno=web.1 queue= wait= service= status=503 bytes=
+2012-04-23T10:36:27+00:00 heroku[nginx]: 46.200.89.91 - - [23/Apr/2012:10:36:27 +0000] "GET /favicon.ico HTTP/1.1" 503 607 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19" checkinn.heroku.com
