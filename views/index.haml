@@ -35,25 +35,33 @@
 				%dt POST /hotel/:id/booking
 				%dd
 					For Hotel with ID = :id
-					Receives CSV formatted data from website and stores it in Booking table
+					Receives CSV formatted data from 
+					%b website 
+					and stores it in Booking table
 					%br	
 					Returns error if failed, or stored data in same format as provided if success
 				%dt POST /hotel/:id/booking/local
 				%dd
 					For Hotel with ID = :id
-					Receives CSV formatted data from local software website and stores it in Booking table
+					Receives CSV formatted data from 
+					%b local software 
+					and stores it in Booking table
 					%br	
 					Returns error if failed, or stored data in same format as provided if success
 				%dt POST /hotel/:id/checkin
 				%dd
 					For Hotel with ID = :id
-					Receives CSV formatted data from local software website and stores it in Checkin table
+					Receives CSV formatted data from 
+					%b local software 
+					and stores it in Checkin table
 					%br	
 					Returns error if failed, or stored data in same format as provided if success
 				%dt POST /hotel/:id/blocked
 				%dd
 					For Hotel with ID = :id
-					Receives CSV formatted data from local software website and stores it in Blocked table
+					Receives CSV formatted data from 
+					%b local software 
+					and stores it in Blocked table
 					%br	
 					Returns error if failed, or stored data in same format as provided if success
 				%dt POST /access, {:key => :string, :secret => :string, :hotelid => :string, :root => :bollean}	
