@@ -5,6 +5,7 @@ require 'mongoid'
 require 'csv'
 require 'date'
 require 'logger'
+require 'openssl'
 
 require File.expand_path(File.dirname(__FILE__) + '/models/db_mongo')
 
@@ -21,6 +22,7 @@ Mongoid.configure do |config|
 	end
  end
 
+$LOG = Logger.new('log_file.txt')  
 
 class CheckinnApi < Sinatra::Base
 	
@@ -29,8 +31,29 @@ class CheckinnApi < Sinatra::Base
     configure :development, :test do
     	require 'sinatra/reloader'
         register Sinatra::Reloader
-        enable :logging
+        enable :logging, :dump_errors, :raise_errors
     end	
+
+    def authenticate!
+    	return false if params[:akey].nil? || params[:atoken].nil? || params[:atimestamp].nil?
+		return false if params[:atimestamp].to_i < Time.now.getutc.to_i - 300 || params[:atimestamp].to_i > Time.now.getutc.to_i   		
+    	return false unless access = Access.first(conditions: {key: params[:akey]})
+    	digest = OpenSSL::Digest::Digest.new('sha1')
+    	token = OpenSSL::HMAC.hexdigest(digest, access.secret, [access.key, params[:atimestamp]].to_csv)
+    	#$LOG.debug "Token: #{token}"
+    	#$LOG.debug "Atoken: #{params[:atoken]}"
+    	return false unless token == params[:atoken]
+    	true
+    end	
+
+	before do
+		#begin	
+			next if request.path_info != '/access/1234567890' 		
+			halt 401, 'Auth Failed' unless authenticate!
+		#rescue Exception => e
+		#	$LOG.fatal e
+		#end
+	end	
 
 	get '/' do
 		haml :index		
@@ -115,6 +138,9 @@ class CheckinnApi < Sinatra::Base
 	end		
 
 	post '/hotel/:id/checkin' do
+
+		RoomAllocation.destroy_all(conditions: {hotelid: params[:id], type: "Ckd"})
+
 		err_msg = []
 		csv = ''
 		request.body.rewind
@@ -144,6 +170,9 @@ class CheckinnApi < Sinatra::Base
 	end	
 
 	post '/hotel/:id/blocked' do
+
+		RoomAllocation.destroy_all(conditions: {hotelid: params[:id], type: "Blk"})
+
 		err_msg = []
 		csv = ''
 		request.body.rewind
@@ -169,6 +198,9 @@ class CheckinnApi < Sinatra::Base
 	end	
 
 	post '/hotel/:id/booking/?:local?' do
+
+		RoomAllocation.destroy_all(conditions: {hotelid: params[:id], type: "Bkd", local: true}) unless params[:local].nil?
+
 		err_msg = []
 		request.body.rewind
 		csv = ''
@@ -205,7 +237,7 @@ class CheckinnApi < Sinatra::Base
 				end	
 			end				
 			if params[:local] || booking.save
-				booking.generate_allocations
+				booking.generate_allocations(params[:local])
 				csv = csv + booking.to_csv
 			else	
 				err_msg.push e.message
@@ -219,10 +251,15 @@ class CheckinnApi < Sinatra::Base
 		end	
 	end	
 
-	get '/hotel/:id/booking/from/:date' do
+	get '/hotel/:id/booking/:from/?:to?' do
 		halt 400, 'Invalid Hotel ID' unless params[:id].to_i > 0
-		halt 400, 'Invalid Date Format' unless params[:date] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
-		bookings = Booking.all_of(:date.gte => params[:date], hotelid: params[:id])
+		halt 400, 'Invalid Date Format' unless params[:from] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
+		halt 400, 'Invalid Date Format' unless params[:to].nil? || params[:to] =~ (/\d{4}-\d{1,2}-\d{1,2}/)
+		if params[:to]
+			bookings = Booking.all_of(:date.gte => params[:from], :date.lte => params[:to], hotelid: params[:id])
+		else
+			bookings = Booking.all_of(:date.gte => params[:from], hotelid: params[:id])
+		end	
 		csv = ''
 		bookings.each {|b|	csv= csv << b.to_csv}
 		csv

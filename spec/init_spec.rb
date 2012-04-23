@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'openssl'
 
 describe "Checkinn API" do
 
@@ -56,15 +57,20 @@ describe "Checkinn API" do
   end
 
   it "should create new access record" do
-    post '/access', params = {:key => '123456789', :secret => 'kp7Ypohjhapkido1980', :hotelid => 1}
+    post '/access', params = {:key => '1234567890', :secret => 'kp7Ypohjhapkido1980', :hotelid => nil, :root => true}
     last_response.should be_ok
-    last_response.body.should == '123456789'
+    last_response.body.should == '1234567890'
   end
 
   it "should show single access record" do
-    get '/access/123456789'
+    atimestamp = Time.now.getutc.to_i
+    akey = '1234567890'
+    asecret = 'kp7Ypohjhapkido1980'
+    digest = OpenSSL::Digest::Digest.new('sha1')
+    atoken = OpenSSL::HMAC.hexdigest(digest, asecret, [akey, atimestamp].to_csv)    
+    get '/access/1234567890', params = {:akey => akey, :atoken => atoken, :atimestamp => atimestamp}
     last_response.should be_ok
-    last_response.body.should match(/123456789/)
+    last_response.body.should match(/1234567890/)
   end
 
   it "should show all accesses" do

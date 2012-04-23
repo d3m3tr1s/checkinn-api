@@ -42,11 +42,11 @@ class Checkin
 		indt.upto oudt do |day|
 			RoomAllocation.create(hotelid: hotelid) do |ra|
 				ra.roomno = roomno
+				ra.resno = lfno
 				ra.date = day
 				ra.type = "Ckd"
 				ra.intime = in_time
 				ra.outtime = out_time
-				ra.status = "C"
 			end	
 		end
 	end		
@@ -78,8 +78,6 @@ class RoomBlocked
 			ra.date = date
 			ra.type = "Blk"
 			ra.resno = roomno + 'BLK'
-			ra.ressno = 1
-			ra.resno = 1
 		end			
 	end	
 end	
@@ -96,6 +94,8 @@ class RoomAllocation
 	field :intime, type: String
 	field :outtime, type: String
 	field :status, type: String
+	field :local, type: Boolean
+
 
 	index(
 		[
@@ -108,9 +108,8 @@ class RoomAllocation
 
 	def to_csv
 		[
-			hotelid, roomno, date, type, resno, ressno, 
-			rsdsno, name, pkgcode, tariff, intime,
-			outtime, status, shortname, fxd
+			hotelid, roomno, date, type, resno, 
+			ressno, intime,	outtime, status
 		].to_csv
 	end
 end
@@ -157,7 +156,7 @@ class Booking
 		].to_csv
 	end	
 
-	def generate_allocations
+	def generate_allocations(local = nil)
 		indt = Date.strptime(in_date, "%Y-%m-%d")
 		oudt = Date.strptime(out_date, "%Y-%m-%d")
 		indt.upto oudt do |day|
@@ -170,6 +169,7 @@ class Booking
 				ra.intime = in_time
 				ra.outtime = out_time
 				ra.status = status
+				ra.local = local unless local.nil?
 			end	
 		end
 	end	

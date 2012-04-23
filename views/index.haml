@@ -16,14 +16,58 @@
 			for Hotel with ID = :id get allocation info of Rooms or Room with number = :roomno (if specified) on date = :date. 
 			%br 
 			Returns CSV formatted RoomAllocation data if for busy room(s) or empty string if free
+		%dt 
+			GET /hotel/:id/booking/:from
+			%br
+			GET /hotel/:id/booking/:from/:to
+		%dd
+			for Hotel with ID = :id	gets Booking record starting from date = :from
+			till optional date = :to
+			Returns set of Booking record in CSV
 		%dt POST /hotel/:id/booking
 		%dd
 			For Hotel with ID = :id
-			Receives CSV formatted data and stores it in Booking table
+			Receives CSV formatted data from website and stores it in Booking table
 			%br	
-			Returns error if failed, or stored data in same format as provided
-		%dt GET /hotel/:id/booking/from/:date
+			Returns error if failed, or stored data in same format as provided if success
+		%dt POST /hotel/:id/booking/local
 		%dd
-			for Hotel with ID = :id	gets Booking record starting from Date = :date
-			Returns set of Booking record in CSV
+			For Hotel with ID = :id
+			Receives CSV formatted data from local software website and stores it in Booking table
+			%br	
+			Returns error if failed, or stored data in same format as provided if success
+		%dt POST /hotel/:id/checkin
+		%dd
+			For Hotel with ID = :id
+			Receives CSV formatted data from local software website and stores it in Checkin table
+			%br	
+			Returns error if failed, or stored data in same format as provided if success
+		%dt POST /hotel/:id/blocked
+		%dd
+			For Hotel with ID = :id
+			Receives CSV formatted data from local software website and stores it in Blocked table
+			%br	
+			Returns error if failed, or stored data in same format as provided if success
+		%dt POST /access, {:key => :string, :secret => :string, :hotelid => :string, :root => :bollean}	
+		%dd
+			Create access record
+			%br :key - public ID 
+			%br :secret - private key 
+			%br :hotelid - optional limited access to single hotel (for single hotel)
+			%br :root - optional flag (true|false) for access with rights to manage other access records
+		%dt GET /access/:key
+		%dd
+			Show single access record data in CSV format		
+		%dt GET /access
+		%dd	
+			List all access records in CSV format
+		%dt DELETE /access/:key
+		%dd 
+			Remove access record from DB		
+		%dt API request authentication
+		%dd
+			Eeach API request must include			
+
+
+
 

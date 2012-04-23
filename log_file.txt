@@ -1,0 +1,5 @@
+# Logfile created on 2012-04-17 18:07:56 +0300 by logger.rb/31641
+Token: dbc8f181e10fc9ad59c5dc6862a81aa5bdc70a92
+Atoken: dbc8f181e10fc9ad59c5dc6862a81aa5bdc70a92
+Token: 8b05103cb8449362f3bcc8fe96ec6bfffb43b121
+Atoken: 8b05103cb8449362f3bcc8fe96ec6bfffb43b121

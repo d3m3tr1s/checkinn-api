@@ -7,6 +7,7 @@ gem 'mongoid'
 gem 'mongoid_auto_inc'
 gem 'fastercsv'
 gem 'rake'
+gem 'crypt'
 
 group :development, :test do 
   gem 'sinatra-reloader'
