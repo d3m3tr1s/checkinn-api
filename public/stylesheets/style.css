@@ -1,0 +1,8 @@
+#head {height: 40px; background-color: olive; color: #FEFEFE; padding: 5px;}
+#content {padding: 20px; display: block;}
+
+.yellow {background-color: #F1F7BC; color: #F00;}
+
+dl {margin-left:20px;}
+dt {width: 300px; float: left; clear: left; border-top: 1px solid #CCC; padding: 5px;}
+dd {width: 670px; float: left; border-top: 1px solid #CCC; padding: 5px;}

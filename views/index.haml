@@ -1,76 +1,97 @@
-%h1 Checkinn Data Exchange Server API
-%p 
-	%b USAGE
-	%dl
-		%dt GET /hotel/:id/room/:roomno/status/:date
-		%dd 
-			for Hotel with ID = :id check status of Room with number = :roomno on date = :date. 
-			%br 
-			Returns 'free' if room is available or 'busy' if room is not available
+!!! 
+%html 
+	%head 
+		%title My Sinatra Website 
+		%link(rel="stylesheet" href="/stylesheets/bootstrap.min.css") 
+		%link(rel="stylesheet" href="/stylesheets/style.css")
+		%link(rel="stylesheet" href="/stylesheets/bootstrap-responsive.min.css") 
+	%body 
+		%h1#head Checkinn Data Exchange Server API
+		#content 
+			%h3 USAGE
+			%dl
+				%dt GET /hotel/:id/room/:roomno/status/:date
+				%dd 
+					for Hotel with ID = :id check status of Room with number = :roomno on date = :date. 
+					%br 
+					Returns 'free' if room is available or 'busy' if room is not available
 
-		%dt 
-			GET /hotel/:id/room/allocation/:date
-			%br
-			GET /hotel/:id/room/:roomno/allocation/:date
-		%dd 
-			for Hotel with ID = :id get allocation info of Rooms or Room with number = :roomno (if specified) on date = :date. 
-			%br 
-			Returns CSV formatted RoomAllocation data if for busy room(s) or empty string if free
-		%dt 
-			GET /hotel/:id/booking/:from
-			%br
-			GET /hotel/:id/booking/:from/:to
-		%dd
-			for Hotel with ID = :id	gets Booking record starting from date = :from
-			till optional date = :to
-			Returns set of Booking record in CSV
-		%dt POST /hotel/:id/booking
-		%dd
-			For Hotel with ID = :id
-			Receives CSV formatted data from website and stores it in Booking table
-			%br	
-			Returns error if failed, or stored data in same format as provided if success
-		%dt POST /hotel/:id/booking/local
-		%dd
-			For Hotel with ID = :id
-			Receives CSV formatted data from local software website and stores it in Booking table
-			%br	
-			Returns error if failed, or stored data in same format as provided if success
-		%dt POST /hotel/:id/checkin
-		%dd
-			For Hotel with ID = :id
-			Receives CSV formatted data from local software website and stores it in Checkin table
-			%br	
-			Returns error if failed, or stored data in same format as provided if success
-		%dt POST /hotel/:id/blocked
-		%dd
-			For Hotel with ID = :id
-			Receives CSV formatted data from local software website and stores it in Blocked table
-			%br	
-			Returns error if failed, or stored data in same format as provided if success
-		%dt POST /access, {:key => :string, :secret => :string, :hotelid => :string, :root => :bollean}	
-		%dd
-			Create access record
-			%br
-			\:key - public ID 
-			%br
-			\:secret - private key 
-			%br
-			\:hotelid - optional limited access to single hotel (for single hotel)
-			%br
-			\:root - optional flag (true|false) for access with rights to manage other access records
-		%dt GET /access/:key
-		%dd
-			Show single access record data in CSV format		
-		%dt GET /access
-		%dd	
-			List all access records in CSV format
-		%dt DELETE /access/:key
-		%dd 
-			Remove access record from DB		
-		%dt API request authentication
-		%dd
-			Eeach API request must include			
+				%dt 
+					GET /hotel/:id/room/allocation/:date
+					%br
+					GET /hotel/:id/room/:roomno/allocation/:date
+				%dd 
+					for Hotel with ID = :id get allocation info of Rooms or Room with number = :roomno (if specified) on date = :date. 
+					%br 
+					Returns CSV formatted RoomAllocation data if for busy room(s) or empty string if free
+				%dt 
+					GET /hotel/:id/booking/:from
+					%br
+					GET /hotel/:id/booking/:from/:to
+				%dd
+					for Hotel with ID = :id	gets Booking record starting from date = :from
+					till optional date = :to
+					Returns set of Booking record in CSV
+				%dt POST /hotel/:id/booking
+				%dd
+					For Hotel with ID = :id
+					Receives CSV formatted data from website and stores it in Booking table
+					%br	
+					Returns error if failed, or stored data in same format as provided if success
+				%dt POST /hotel/:id/booking/local
+				%dd
+					For Hotel with ID = :id
+					Receives CSV formatted data from local software website and stores it in Booking table
+					%br	
+					Returns error if failed, or stored data in same format as provided if success
+				%dt POST /hotel/:id/checkin
+				%dd
+					For Hotel with ID = :id
+					Receives CSV formatted data from local software website and stores it in Checkin table
+					%br	
+					Returns error if failed, or stored data in same format as provided if success
+				%dt POST /hotel/:id/blocked
+				%dd
+					For Hotel with ID = :id
+					Receives CSV formatted data from local software website and stores it in Blocked table
+					%br	
+					Returns error if failed, or stored data in same format as provided if success
+				%dt POST /access, {:key => :string, :secret => :string, :hotelid => :string, :root => :bollean}	
+				%dd
+					Create access record
+					%br
+					\:key - public ID 
+					%br
+					\:secret - private key 
+					%br
+					\:hotelid - optional limited access to single hotel (for single hotel)
+					%br
+					\:root - optional flag (true|false) for access with rights to manage other access records
+				%dt GET /access/:key
+				%dd
+					Show single access record data in CSV format		
+				%dt GET /access
+				%dd	
+					List all access records in CSV format
+				%dt DELETE /access/:key
+				%dd 
+					Remove access record from DB		
+				%dt.yellow 
+					API request authentication
+				%dd
+					Eeach API request must include 
+					%br
+					\:akey => your API key			
+					%br
+					\:atimestamp => current UTC time in seconds
+					%br
+					\:atoken => generated token
+					%br
+					Example: 
+					%br
+					GET /access/1234567890?akey=1234567890&atimestamp=1334567&atoken=123jfhjab46khksdfHq4505j600
+
+
 
 
 
