@@ -104,7 +104,8 @@ class CheckinnApi < Sinatra::Base
 			description "Delete access"
       		param :id, :string, :required
       		control do
-        		Access.destroy(params[:id])
+      			access = Access.first(conditions: {key: params[:id]})
+        		access.destroy
         		halt [410, "Access deleted"]
 		    end			
 		end	
